@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Obter IP Publico </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="label p-4">
+        <label>
+            Obter IP Publico            
+        </label>
+        </div>
+        <div class="btn">
+        <a name="" id="getDados" class="btn btn-primary" href="#" role="button">Obter</a>
+        <input type="button" id="limpar" class="btn btn-primary" value="Limpar"></a>
+        </div>
+        <div class="bg-primary rounded p-2 text-white">
+           <ul id="lista">
+                            
+           </ul>
+
+        </div>
+    </div>
+   
+     
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <script>
+            $('#getDados').click(function(){
+                //alert("oi");
+                $.ajax({
+                    url: 'https://ipinfo.io/',
+                    //url: 'https://viacep.com.br/ws/81730010/json/',
+                    dataType: 'json',
+                    success: function(retorno){
+                        $.each(retorno, function(key, value){
+                            var dadok = key;
+                            var dadov = value;
+                            //alert(dado);
+                            $('<li>').css("color","white").text(dadok+" = "+dadov).appendTo('#lista');
+                            console.log(dadok, dadov);
+                        });
+                    }
+                });
+            });            
+        </script>
+        <script>
+            $('#limpar').click(function(){
+                $('#lista').empty();
+
+            });           
+        </script>
+</body>
+</html>
